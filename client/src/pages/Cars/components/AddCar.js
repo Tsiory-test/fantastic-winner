@@ -1,11 +1,20 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-const AddCar = () => {
+const AddCar = ({ setCar }) => {
+    // const [car, setCar] = React.useState(null);
     const { register, handleSubmit } = useForm();
+
+    const onSubmit = (data) => {
+        setCar({
+            marque: data.marque,
+            photo: data.photo[0].name
+        })
+    }
+
     return (
         <div>
-            <form className="border w-1/2 mx-auto my-10 rounded shadow">
+            <form onSubmit={handleSubmit(onSubmit)} className="border w-1/2 mx-auto my-10 rounded shadow">
                 <h2 className="text-center m-2 font-bold">Ajouter une nouvelle voiture</h2>
                 <div className="grid grid-cols-1 m-4">
                     <label className="md:text-sm text-xs text-gray-500 text-light font-semibold">Marque de la voiture
